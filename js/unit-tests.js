@@ -19,13 +19,6 @@ QUnit.test("Component.prototype.isSelectable()", function(assert) {
     assert.ok(exceptionThrown, "Method is unofficially abstract");
 });
 
-QUnit.test("Other aspects of Component", function(assert) {
-    var component = new GUI.Component();
-    assert.ok(component.constructor === GUI.Component,
-        "Side effect of using object literal notation to overwrite " +
-        "the prototype was avoided");
-});
-
 QUnit.module("label.js");
 
 QUnit.test("Label()", function(assert) {
@@ -38,8 +31,7 @@ QUnit.test("Label()", function(assert) {
         "Instance of Label is instance of Component");
 
     // Test constructor stealing
-    assert.ok(label.hasOwnProperty("_isSelected") &&
-        label.hasOwnProperty("_isActive"),
+    assert.ok(label.hasOwnProperty("isSelected"),
         "Label steals Component's constructor in its own");
 });
 

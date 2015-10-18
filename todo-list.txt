@@ -1,5 +1,5 @@
 -create class Label
-    --see if can use accessor properties (in Component and Label)
+    --see if can use accessor properties (in Label)
     --skim through the book "The Principles..." and see which
         additional concepts I can apply (that I've so far missed)
         --apply "scope safety" to constructors, if possible; use unit test
