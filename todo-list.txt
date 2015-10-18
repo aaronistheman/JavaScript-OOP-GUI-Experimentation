@@ -1,10 +1,9 @@
 -create class Label
-    --give Label whatever else it needs from C++ version
-    --see if can use accessor properties (in Component and Label)
     --in unit test, see if private members and priviledged methods work?
+    --see if can use accessor properties (in Component and Label)
     --skim through the book "The Principles..." and see which
-        additional concepts I can apply
-        --apply "scope safety" to constructors, if possible
+        additional concepts I can apply (that I've so far missed)
+        --apply "scope safety" to constructors, if possible; use unit test
 -create class Icon
 -create class Button
 -create class Container
