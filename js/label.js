@@ -15,9 +15,14 @@ GUI.Label = function(text, fontFace) {
     GUI.Component.call(this);
 
     var _text = text;
-    this.getText = function() {
-        return _text;
-    };
+    Object.defineProperty(this, "text", {
+        get : function() {
+            return _text;
+        },
+        set : undefined,
+        enumerable : true,
+        configurable : true
+    });
 
     this.fontFace = fontFace;
     this.fontSize = 15;

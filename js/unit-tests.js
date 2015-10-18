@@ -35,9 +35,14 @@ QUnit.test("Label()", function(assert) {
         "Label steals Component's constructor in its own");
 });
 
+QUnit.test("Label.text", function(assert) {
+    var label = new GUI.Label("123", "trivial");
+    assert.deepEqual(label.text, "123", "Getter for \"_text\" works");
+});
+
 QUnit.test("Other aspects of Label", function(assert) {
     var label = new GUI.Label("original", "trivial");
     label._text = "changed";
-    assert.deepEqual(label.getText(), "original",
+    assert.deepEqual(label.text, "original",
         "The \"_text\" member of custom type Label is private");
 });
