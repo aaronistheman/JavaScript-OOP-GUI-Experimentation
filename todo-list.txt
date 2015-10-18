@@ -1,5 +1,4 @@
 -create class Label
-    --in unit test, see if private members and priviledged methods work?
     --see if can use accessor properties (in Component and Label)
     --skim through the book "The Principles..." and see which
         additional concepts I can apply (that I've so far missed)

@@ -29,7 +29,7 @@ QUnit.test("Other aspects of Component", function(assert) {
 QUnit.module("label.js");
 
 QUnit.test("Label()", function(assert) {
-    var label = new GUI.Label();
+    var label = new GUI.Label("trivial", "trivial");
 
     // Test object inheritance
     assert.ok(GUI.Component.prototype.isPrototypeOf(label),
@@ -41,4 +41,11 @@ QUnit.test("Label()", function(assert) {
     assert.ok(label.hasOwnProperty("_isSelected") &&
         label.hasOwnProperty("_isActive"),
         "Label steals Component's constructor in its own");
+});
+
+QUnit.test("Other aspects of Label", function(assert) {
+    var label = new GUI.Label("original", "trivial");
+    label._text = "changed";
+    assert.deepEqual(label.getText(), "original",
+        "The \"_text\" member of custom type Label is private");
 });

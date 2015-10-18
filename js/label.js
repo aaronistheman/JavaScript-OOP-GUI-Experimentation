@@ -8,13 +8,23 @@
 /*
     Inherits from GUI.Component
     @param text the text to display on the label
-    @param fontFace the font face to use for drawing the label's text
+    @param fontFace the font face to use for drawing the label's text;
+    should be a string
 */
 GUI.Label = function(text, fontFace) {
     GUI.Component.call(this);
-    this._text = text;
-    this._fontFace = fontFace;
-    this._fontSize = 15;
+
+    var _text = text;
+    this.getText = function() {
+        return _text;
+    };
+
+    this.fontFace = fontFace;
+    this.fontSize = 15;
+
+    this.draw = function(graphicsCanvas, textCanvas) {
+        // to be implemented later
+    }
 };
 
 // Make GUI.Label inherit from GUI.Component
@@ -29,8 +39,4 @@ GUI.Label.prototype = Object.create(GUI.Component.prototype, {
 
 GUI.Label.prototype.isSelectable = function() {
     return false;
-}
-
-GUI.Label.prototype.draw = function(graphicsCanvas, textCanvas) {
-    // to be implemented later
 }
