@@ -1,11 +1,12 @@
 -create class Label
-    --use Object.prototype.isPrototypeOf() to test if inheritance successful
-        --do so in unit test
+    --give Label whatever else it needs from C++ version
     --see if can use accessor properties (in Component and Label)
     --in unit test, see if private members and priviledged methods work?
     --skim through the book "The Principles..." and see which
         additional concepts I can apply
+        --apply "scope safety" to constructors, if possible
 -create class Icon
 -create class Button
 -create class Container
 -create class MenuState
+-make a thorough readme?

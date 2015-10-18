@@ -15,7 +15,7 @@ GUI.Component = function() {
 
 GUI.Component.prototype = {
     constructor : GUI.Component,
-    
+
     /*
         Note that this is an abstract method.
         @hasTest yes
@@ -25,27 +25,27 @@ GUI.Component.prototype = {
         alertAndThrowException(
             "GUI.Component.prototype.isSelectable() is abstract");
     },
-    
+
     isSelected : function() {
         return this._isSelected;
     },
-    
+
     select : function() {
         this._isSelected = true;
     },
-    
+
     deselect : function() {
         this._isSelected = false;
     },
-    
+
     isActive : function() {
         return this._isActive;
     },
-    
+
     activate : function() {
         this._isActive = true;
     },
-    
+
     deactivate : function() {
         this._isActive = false;
     },

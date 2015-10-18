@@ -25,3 +25,20 @@ QUnit.test("Other aspects of Component", function(assert) {
         "Side effect of using object literal notation to overwrite " +
         "the prototype was avoided");
 });
+
+QUnit.module("label.js");
+
+QUnit.test("Label()", function(assert) {
+    var label = new GUI.Label();
+
+    // Test object inheritance
+    assert.ok(GUI.Component.prototype.isPrototypeOf(label),
+        "Label inherits the prototype of Component");
+    assert.ok(label instanceof GUI.Component,
+        "Instance of Label is instance of Component");
+
+    // Test constructor stealing
+    assert.ok(label.hasOwnProperty("_isSelected") &&
+        label.hasOwnProperty("_isActive"),
+        "Label steals Component's constructor in its own");
+});
