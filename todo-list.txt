@@ -1,5 +1,10 @@
--create class Component
 -create class Label
+    --use Object.prototype.isPrototypeOf() to test if inheritance successful
+        --do so in unit test
+    --see if can use accessor properties (in Component and Label)
+    --in unit test, see if private members and priviledged methods work?
+    --skim through the book "The Principles..." and see which
+        additional concepts I can apply
 -create class Icon
 -create class Button
 -create class Container
