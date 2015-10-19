@@ -12,23 +12,27 @@
     should be a string
 */
 GUI.Label = function(text, fontFace) {
-    GUI.Component.call(this);
+    if (!(this instanceof GUI.Label))
+        return new GUI.Label(text, fontFace);
+    else {
+        GUI.Component.call(this);
 
-    var _text = text;
-    Object.defineProperty(this, "text", {
-        get : function() {
-            return _text;
-        },
-        set : undefined,
-        enumerable : true,
-        configurable : true
-    });
+        var _text = text;
+        Object.defineProperty(this, "text", {
+            get : function() {
+                return _text;
+            },
+            set : undefined,
+            enumerable : true,
+            configurable : true
+        });
 
-    this.fontFace = fontFace;
-    this.fontSize = 15;
+        this.fontFace = fontFace;
+        this.fontSize = 15;
 
-    this.draw = function(graphicsCanvas, textCanvas) {
-        // to be implemented later
+        this.draw = function(graphicsCanvas, textCanvas) {
+            // to be implemented later
+        }
     }
 };
 

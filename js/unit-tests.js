@@ -33,6 +33,11 @@ QUnit.test("Label()", function(assert) {
     // Test constructor stealing
     assert.ok(label.hasOwnProperty("isSelected"),
         "Label steals Component's constructor in its own");
+
+    // Test constructor's scope-safety
+    var label2 = GUI.Label("trivial", "fontFace");
+    assert.ok((label2 instanceof GUI.Label) && (typeof label2 === "object"),
+        "Constructor of Label is scope-safe");
 });
 
 QUnit.test("Label.text", function(assert) {

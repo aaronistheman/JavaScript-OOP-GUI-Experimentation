@@ -1,7 +1,4 @@
--create class Label
-    --skim through the book "The Principles..." and see which
-        additional concepts I can apply (that I've so far missed)
-        --apply "scope safety" to constructors, if possible; use unit test
+-make Component's constructor abstract; see the StackOverflow forums
 -create class Icon
 -create class Button
 -create class Container
