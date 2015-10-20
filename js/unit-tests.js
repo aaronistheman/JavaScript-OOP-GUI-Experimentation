@@ -18,17 +18,17 @@ QUnit.test("Component()", function(assert) {
     assert.ok(exceptionThrown, "Constructor is abstract");
 });
 
-// QUnit.test("Component.prototype.isSelectable()", function(assert) {
-    // var exceptionThrown = false;
-    // try {
-        // var component = new GUI.Component();
-        // component.isSelectable();
-    // }
-    // catch(err) {
-        // exceptionThrown = true;
-    // }
-    // assert.ok(exceptionThrown, "Method is unofficially abstract");
-// });
+QUnit.test("Component.prototype.isSelectable()", function(assert) {
+    var exceptionThrown = false;
+    try {
+        var trivialObject = {};
+        GUI.Component.prototype.isSelectable.call(trivialObject);
+    }
+    catch(err) {
+        exceptionThrown = true;
+    }
+    assert.ok(exceptionThrown, "Method is unofficially abstract");
+});
 
 QUnit.module("label.js");
 

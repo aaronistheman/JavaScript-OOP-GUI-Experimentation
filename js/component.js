@@ -7,6 +7,7 @@
 
 /*
     This class is meant to be abstract.
+    @hasTest yes
 */
 GUI.Component = function() {
     if (this.constructor === GUI.Component)
