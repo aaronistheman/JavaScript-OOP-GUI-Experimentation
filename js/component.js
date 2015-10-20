@@ -9,8 +9,13 @@
     This class is meant to be abstract.
 */
 GUI.Component = function() {
-    this.isSelected = false;
-    this.isActive = false;
+    if (this.constructor === GUI.Component)
+        alertAndThrowException(
+            "GUI.Component constructor is abstract");
+    else {
+        this.isSelected = false;
+        this.isActive = false;
+    }
 };
 
 /*

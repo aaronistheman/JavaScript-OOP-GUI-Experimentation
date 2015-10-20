@@ -1,4 +1,5 @@
 -make Component's constructor abstract; see the StackOverflow forums
+    --fix unit test of GUI.Component.isSelectable()
 -create class Icon
 -create class Button
 -create class Container

@@ -7,17 +7,28 @@
 
 QUnit.module("component.js");
 
-QUnit.test("Component.prototype.isSelectable()", function(assert) {
+QUnit.test("Component()", function(assert) {
     var exceptionThrown = false;
     try {
         var component = new GUI.Component();
-        component.isSelectable();
     }
-    catch(err) {
+    catch (err) {
         exceptionThrown = true;
     }
-    assert.ok(exceptionThrown, "Method is unofficially abstract");
+    assert.ok(exceptionThrown, "Constructor is abstract");
 });
+
+// QUnit.test("Component.prototype.isSelectable()", function(assert) {
+    // var exceptionThrown = false;
+    // try {
+        // var component = new GUI.Component();
+        // component.isSelectable();
+    // }
+    // catch(err) {
+        // exceptionThrown = true;
+    // }
+    // assert.ok(exceptionThrown, "Method is unofficially abstract");
+// });
 
 QUnit.module("label.js");
 
