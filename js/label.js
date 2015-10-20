@@ -7,6 +7,7 @@
 
 /*
     Inherits from GUI.Component
+    @hasTest yes
     @param text the text to display on the label
     @param fontFace the font face to use for drawing the label's text;
     should be a string

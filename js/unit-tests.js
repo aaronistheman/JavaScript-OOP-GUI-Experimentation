@@ -7,11 +7,22 @@
 
 QUnit.module("component.js");
 
-QUnit.test("Component.prototype.isSelectable()", function(assert) {
+QUnit.test("Component()", function(assert) {
     var exceptionThrown = false;
     try {
         var component = new GUI.Component();
-        component.isSelectable();
+    }
+    catch (err) {
+        exceptionThrown = true;
+    }
+    assert.ok(exceptionThrown, "Constructor is abstract");
+});
+
+QUnit.test("Component.prototype.isSelectable()", function(assert) {
+    var exceptionThrown = false;
+    try {
+        var trivialObject = {};
+        GUI.Component.prototype.isSelectable.call(trivialObject);
     }
     catch(err) {
         exceptionThrown = true;
