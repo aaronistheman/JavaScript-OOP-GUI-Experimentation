@@ -6,4 +6,5 @@ start Notepad++ js/experimentation.js
 start Notepad++ todo-list.txt
 start Notepad++ js/component.js
 start Notepad++ js/utility.js
+start Notepad++ js/label.js
 exit
