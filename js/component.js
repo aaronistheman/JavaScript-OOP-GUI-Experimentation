@@ -14,17 +14,45 @@ GUI.Component = function() {
         alertAndThrowException(
             "GUI.Component constructor is abstract");
     else {
-        this.isSelected = false;
-        this.isActive = false;
+        this._isSelected = false;
+        this._isActive = false;
     }
 };
 
-/*
-    Note that this is an abstract method.
-    @hasTest yes
-    @returns true if this instance is selectable; false, otherwise
-*/
-GUI.Component.prototype.isSelectable = function() {
-    alertAndThrowException(
-        "GUI.Component.prototype.isSelectable() is abstract");
+GUI.Component.prototype = {
+    constructor : GUI.Component,
+
+    /*
+        Note that this is an abstract method.
+        @hasTest yes
+        @returns true if this instance is selectable; false, otherwise
+    */
+    isSelectable : function() {
+        alertAndThrowException(
+            "GUI.Component.prototype.isSelectable() is abstract");
+    },
+
+    isSelected : function() {
+        return this._isSelected;
+    },
+
+    select : function() {
+        this._isSelected = true;
+    },
+
+    deselect : function() {
+        this._isSelected = false;
+    },
+
+    isActive : function() {
+        return this._isActive;
+    },
+
+    activate : function() {
+        this._isActive = true;
+    },
+
+    deactivate : function() {
+        this._isActive = false;
+    },
 };

@@ -27,7 +27,7 @@ function testInheritanceFromComponent(assert, customType, nameOfType) {
         "Instance of " + nameOfType + " is instance of Component");
 
     // Test constructor stealing
-    assert.ok(object.hasOwnProperty("isSelected"),
+    assert.ok(object.hasOwnProperty(Object.keys(object)[0]),
         nameOfType + " steals Component's constructor in its own");
 }
 
