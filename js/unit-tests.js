@@ -5,6 +5,49 @@
     Not for release
 */
 
+/*
+    @pre when used as a constructor, customType must be okay
+    with having no arguments supplied to it
+    @post some assertions have been run to see if an instance of the
+    given type inherits from Component.prototype (and steals its
+    constructor)
+    @param assert needed to be able to do QUnit assertions
+    @param customType the type to evaluate; should be a constructor's
+    name
+    @param nameOfType custom type's name that will be used in the
+    tests' messages; must be a string
+*/
+function testInheritanceFromComponent(assert, customType, nameOfType) {
+    var object = new customType();
+
+    // Test object inheritance
+    assert.ok(GUI.Component.prototype.isPrototypeOf(object),
+        nameOfType + " inherits the prototype of Component");
+    assert.ok(object instanceof GUI.Component,
+        "Instance of " + nameOfType + " is instance of Component");
+
+    // Test constructor stealing
+    assert.ok(object.hasOwnProperty("isSelected"),
+        nameOfType + " steals Component's constructor in its own");
+}
+
+/*
+    @pre when used as a constructor, customType must be okay
+    with having no arguments supplied to it
+    @post some assertions have been run to see if the constructor
+    of customType is scope-safe
+    @param assert needed to be able to do QUnit assertions
+    @param customType the type to evaluate; should be a constructor's
+    name
+    @param nameOfType custom type's name that will be used in the
+    tests' messages; must be a string
+*/
+function testConstructorScopeSafety(assert, customType, nameOfType) {
+    var object = customType();
+    assert.ok((object instanceof customType) && (typeof object === "object"),
+        "Constructor of " + nameOfType + " is scope-safe");
+}
+
 QUnit.module("component.js");
 
 QUnit.test("Component()", function(assert) {
@@ -33,43 +76,15 @@ QUnit.test("Component.prototype.isSelectable()", function(assert) {
 QUnit.module("icon.js");
 
 QUnit.test("Icon()", function(assert) {
-    var icon = new GUI.Icon("trivial", "trivial");
-
-    // Test object inheritance
-    assert.ok(GUI.Component.prototype.isPrototypeOf(icon),
-        "Icon inherits the prototype of Component");
-    assert.ok(icon instanceof GUI.Component,
-        "Instance of Icon is instance of Component");
-
-    // Test constructor stealing
-    assert.ok(icon.hasOwnProperty("isSelected"),
-        "Icon steals Component's constructor in its own");
-
-    // Test constructor's scope-safety
-    var icon2 = GUI.Icon("trivial", "trivial");
-    assert.ok((icon2 instanceof GUI.Icon) && (typeof icon2 === "object"),
-        "Constructor of Icon is scope-safe");
+    testInheritanceFromComponent(assert, GUI.Icon, "Icon");
+    testConstructorScopeSafety(assert, GUI.Icon, "Icon");
 });
 
 QUnit.module("label.js");
 
 QUnit.test("Label()", function(assert) {
-    var label = new GUI.Label("trivial", "trivial");
-
-    // Test object inheritance
-    assert.ok(GUI.Component.prototype.isPrototypeOf(label),
-        "Label inherits the prototype of Component");
-    assert.ok(label instanceof GUI.Component,
-        "Instance of Label is instance of Component");
-
-    // Test constructor stealing
-    assert.ok(label.hasOwnProperty("isSelected"),
-        "Label steals Component's constructor in its own");
-
-    // Test constructor's scope-safety
-    var label2 = GUI.Label("trivial", "trivial");
-    assert.ok((label2 instanceof GUI.Label) && (typeof label2 === "object"),
-        "Constructor of Label is scope-safe");
+    testInheritanceFromComponent(assert, GUI.Label, "Label");
+    testConstructorScopeSafety(assert, GUI.Label, "Label");
 });
 
 QUnit.test("Label.text", function(assert) {
