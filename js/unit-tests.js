@@ -30,6 +30,27 @@ QUnit.test("Component.prototype.isSelectable()", function(assert) {
     assert.ok(exceptionThrown, "Method is unofficially abstract");
 });
 
+QUnit.module("icon.js");
+
+QUnit.test("Icon()", function(assert) {
+    var icon = new GUI.Icon("trivial", "trivial");
+
+    // Test object inheritance
+    assert.ok(GUI.Component.prototype.isPrototypeOf(icon),
+        "Icon inherits the prototype of Component");
+    assert.ok(icon instanceof GUI.Component,
+        "Instance of Icon is instance of Component");
+
+    // Test constructor stealing
+    assert.ok(icon.hasOwnProperty("isSelected"),
+        "Icon steals Component's constructor in its own");
+
+    // Test constructor's scope-safety
+    var icon2 = GUI.Icon("trivial", "trivial");
+    assert.ok((icon2 instanceof GUI.Icon) && (typeof icon2 === "object"),
+        "Constructor of Icon is scope-safe");
+});
+
 QUnit.module("label.js");
 
 QUnit.test("Label()", function(assert) {
@@ -46,7 +67,7 @@ QUnit.test("Label()", function(assert) {
         "Label steals Component's constructor in its own");
 
     // Test constructor's scope-safety
-    var label2 = GUI.Label("trivial", "fontFace");
+    var label2 = GUI.Label("trivial", "trivial");
     assert.ok((label2 instanceof GUI.Label) && (typeof label2 === "object"),
         "Constructor of Label is scope-safe");
 });

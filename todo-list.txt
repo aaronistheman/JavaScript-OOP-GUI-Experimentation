@@ -1,5 +1,8 @@
--create class Icon
+-try to make a function that tests each of the things that the subclass
+    need be tested for
 -create class Button
 -create class Container
 -create class MenuState
+    --create some sample combinations of the GUI classes
+-implement the drawing functionality of the classes that need it
 -make a thorough readme?
