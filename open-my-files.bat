@@ -9,4 +9,5 @@ start Notepad++ js/utility.js
 start Notepad++ js/label.js
 start Notepad++ js/icon.js
 start Notepad++ js/button.js
+start Notepad++ js/container.js
 exit
