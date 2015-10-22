@@ -1,7 +1,7 @@
 "use strict";
 
 /*
-    Translator (from C++ to JavaScript): Aaron Kaloti
+    Translated (from C++ to JavaScript) by: Aaron Kaloti
     Authors of original (C++) version: Artur Moreira,
         Henrik Vogelius Hansson, and Jan Haller
     Not for release

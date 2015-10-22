@@ -1,4 +1,3 @@
--cite the author(s) of the C++ versions
 -create class MenuState
     --create some sample combinations of the GUI classes
 -implement the drawing functionality of the classes that need it
