@@ -27,7 +27,7 @@ function testInheritanceFromComponent(assert, customType, nameOfType) {
         "Instance of " + nameOfType + " is instance of Component");
 
     // Test constructor stealing
-    assert.ok(object.hasOwnProperty(Object.keys(object)[0]),
+    assert.ok(object.hasOwnProperty("_isSelected"),
         nameOfType + " steals Component's constructor in its own");
 }
 
@@ -47,6 +47,48 @@ function testConstructorScopeSafety(assert, customType, nameOfType) {
     assert.ok((object instanceof customType) && (typeof object === "object"),
         "Constructor of " + nameOfType + " is scope-safe");
 }
+
+QUnit.module("button.js");
+
+QUnit.test("Button()", function(assert) {
+    testInheritanceFromComponent(assert, GUI.Button, "Button");
+    testConstructorScopeSafety(assert, GUI.Button, "Button");
+});
+
+QUnit.test("Button.prototype.select()", function(assert) {
+    var button = new GUI.Button("trivial");
+    button.select();
+    assert.ok(button._isSelected,
+        "Button's state has been updated to reflect its being selected");
+    assert.deepEqual(button._textColor, GUI.Button.TEXT_COLORS.SELECTED,
+        "Button's text color has been updated");
+});
+
+// This test assumes that GUI.Button.prototype.select() works
+QUnit.test("Button.prototype.deselect()", function(assert) {
+    var button = new GUI.Button("trivial");
+    button.select();
+    button.deselect();
+    assert.deepEqual(button._isSelected, false,
+        "Button's state has been updated to reflect its being deselected");
+    assert.deepEqual(button._textColor, GUI.Button.TEXT_COLORS.UNSELECTED,
+        "Button's text color has been updated");
+});
+
+QUnit.test("Button.prototype.activate()", function(assert) {
+    var button = new GUI.Button("trivial");
+    button.activate();
+    assert.ok(button._isActive,
+        "This method accesses the supertype (Component) version");
+
+    var callbackWasCalled = false;
+    button.setCallback(function() {
+        callbackWasCalled = true;
+    });
+    button.activate();
+    assert.ok(callbackWasCalled,
+        "Activating a button triggers the callback");
+});
 
 QUnit.module("component.js");
 
