@@ -115,6 +115,53 @@ QUnit.test("Component.prototype.isSelectable()", function(assert) {
     assert.ok(exceptionThrown, "Method is unofficially abstract");
 });
 
+QUnit.module("container.js");
+
+QUnit.test("Container()", function(assert) {
+    testInheritanceFromComponent(assert, GUI.Container, "Container");
+    testConstructorScopeSafety(assert, GUI.Container, "Container");
+});
+
+QUnit.test("Container.prototype.pack()", function(assert) {
+    // Add two unselectable components, two selectable components, and
+    // then a final unselectable component, so that the third component
+    // should be selected
+    var container = new GUI.Container();
+    container.pack(new GUI.Label());
+    container.pack(new GUI.Icon());
+    container.pack(new GUI.Button());
+    container.pack(new GUI.Button());
+    container.pack(new GUI.Container());
+
+    assert.deepEqual(container._children.length, 5,
+        "Each Component was added");
+    assert.ok(container._children[2].isSelected(),
+        "Selected correct Component");
+    assert.ok(!(container._children[0].isSelected() ||
+        container._children[1].isSelected() ||
+        container._children[3].isSelected() ||
+        container._children[4].isSelected()),
+        "Correctly, none of the wrong Components were selected");
+});
+
+QUnit.test("Container.prototype.select()", function(assert) {
+    var container = new GUI.Container();
+    container.pack(new GUI.Label());
+    container.pack(new GUI.Button());
+    container.pack(new GUI.Button());
+
+    container.select(0);
+    assert.ok((container._selectedChild === 1) &&
+        (!container._children[0].isSelected()) &&
+        container._children[1].isSelected(),
+        "Nothing happens if indicated component isn't selectable");
+    container.select(2);
+    assert.ok((container._selectedChild === 2) &&
+        (!container._children[1].isSelected()) &&
+        container._children[2].isSelected(),
+        "Indicated component was successfully selected");
+})
+
 QUnit.module("icon.js");
 
 QUnit.test("Icon()", function(assert) {
