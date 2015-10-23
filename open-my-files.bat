@@ -10,4 +10,5 @@ start Notepad++ js/label.js
 start Notepad++ js/icon.js
 start Notepad++ js/button.js
 start Notepad++ js/container.js
+start Notepad++ js/menu-state.js
 exit

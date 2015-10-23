@@ -27,7 +27,9 @@ GUI.Button = function(fontFace) {
             get : function() {
                 return _text;
             },
-            set : undefined,
+            set : function(text) {
+                _text = text;
+            },
             enumerable : true,
             configurable : true
         });

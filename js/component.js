@@ -18,6 +18,9 @@ GUI.Component = function() {
     else {
         this._isSelected = false;
         this._isActive = false;
+
+        this._positionX = 0;
+        this._positionY = 0;
     }
 };
 
@@ -56,5 +59,10 @@ GUI.Component.prototype = {
 
     deactivate : function() {
         this._isActive = false;
+    },
+
+    setPosition : function(x, y) {
+        this._positionX = x;
+        this._positionY = y;
     },
 };
