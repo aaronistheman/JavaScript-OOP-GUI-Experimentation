@@ -65,4 +65,16 @@ GUI.Component.prototype = {
         this._positionX = x;
         this._positionY = y;
     },
+
+    /*
+        Note that this is an abstract method.
+        @param graphicalCanvas the canvas on which the graphical
+        (i.e. non-textual) parts of the component will be drawn
+        @param textualCanvas the canvas on which the textual
+        (i.e. non-graphical) parts of the component will be drawn
+    */
+    draw : function(graphicalCanvas, textualCanvas) {
+        alertAndThrowException(
+            "GUI.Component.prototype.draw() is abstract");
+    },
 };
