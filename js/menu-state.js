@@ -7,18 +7,54 @@
     Not for release
 */
 
-function MenuState() {
+/*
+    @pre graphicalCanvasId and textualCanvasId are the ids of canvases
+    that exist (i.e. the webpage has those canvas elements)
+    @param graphicalCanvasId id of the canvas on which the graphical
+    (i.e. non-textual) parts of the menu will be drawn
+    @param textualCanvasId id of the canvas on which the textual
+    (i.e. non-graphical) parts of the menu will be drawn
+*/
+function MenuState(graphicalCanvasId, textualCanvasId) {
+    /*
+        Initialize members
+    */
+
     this._GUIContainer = new GUI.Container();
 
+    var _graphicalCanvas = document.getElementById(graphicalCanvasId);
+    Object.defineProperty(this, "graphicalCanvas", {
+        get : function() {
+            return _graphicalCanvas;
+        },
+        set : undefined,
+        enumerable : true,
+        configurable : true
+    });
+
+    var _textualCanvas = document.getElementById(textualCanvasId);
+    Object.defineProperty(this, "textualCanvas", {
+        get : function() {
+            return _textualCanvas;
+        },
+        set : undefined,
+        enumerable : true,
+        configurable : true
+    });
+
+    /*
+        Set up the menu
+    */
+
     var button1 = new GUI.Button("Arial");
-    button1.setPosition(100, 200);
+    button1.setPosition(200, 200);
     button1.text = "Button 1";
     button1.setCallback(function() {
         alert("Button 1 was pressed");
     });
 
     var button2 = new GUI.Button("Arial");
-    button2.setPosition(300, 400);
+    button2.setPosition(200, 300);
     button2.text = "Button 2";
     button2.setCallback(function() {
         alert("Button 2 was pressed");
@@ -26,4 +62,17 @@ function MenuState() {
 
     this._GUIContainer.pack(button1);
     this._GUIContainer.pack(button2);
+}
+
+MenuState.prototype = {
+    constructor : MenuState,
+
+    /*
+        @post each component in this._GUIContainer has been
+        drawn on this MenuState instance's canvases
+    */
+    draw : function() {
+        this._GUIContainer.draw(
+            this.graphicalCanvas, this.textualCanvas);
+    }
 }

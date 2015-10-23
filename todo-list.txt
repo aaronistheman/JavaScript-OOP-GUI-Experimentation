@@ -1,11 +1,9 @@
 -create class MenuState
-    --implement the drawing functionality of the classes that need it
-        --draw Button through the MenuState's draw function (and thus
-            through Container's draw function)
-        --redraw button's text when it's selected or deselected
     --create some sample combinations of the GUI classes; draw
         them on canvas
-        --draw the other components
+        --draw each other component at least once
 -implement MenuState.enableInput() to allow arrow keys
+    --redraw button's text when it's selected or deselected
+    --make sure only selectable components can be selected
 -improve the look of the drawn GUI components
 -make a thorough readme?

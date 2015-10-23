@@ -51,8 +51,15 @@ GUI.Container.prototype.isSelectable = function() {
     return false;
 };
 
-GUI.Container.prototype.draw = function() {
-    // to be implemented later
+/*
+    See draw() of supertype GUI.Component for general
+    description
+    @post each stored component has been drawn on the indicated
+    canvases
+*/
+GUI.Container.prototype.draw = function(graphicalCanvas, textualCanvas) {
+    for (var i in this._children)
+        this._children[i].draw(graphicalCanvas, textualCanvas);
 };
 
 GUI.Container.prototype.hasSelection = function() {
