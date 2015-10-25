@@ -18,6 +18,9 @@ GUI.Component = function() {
     else {
         this._isSelected = false;
         this._isActive = false;
+
+        this._positionX = 0;
+        this._positionY = 0;
     }
 };
 
@@ -56,5 +59,22 @@ GUI.Component.prototype = {
 
     deactivate : function() {
         this._isActive = false;
+    },
+
+    setPosition : function(x, y) {
+        this._positionX = x;
+        this._positionY = y;
+    },
+
+    /*
+        Note that this is an abstract method.
+        @param graphicalCanvas the canvas on which the graphical
+        (i.e. non-textual) parts of the component will be drawn
+        @param textualCanvas the canvas on which the textual
+        (i.e. non-graphical) parts of the component will be drawn
+    */
+    draw : function(graphicalCanvas, textualCanvas) {
+        alertAndThrowException(
+            "GUI.Component.prototype.draw() is abstract");
     },
 };

@@ -26,8 +26,54 @@ GUI.Icon = function(image) {
             configurable : true
         });
 
-        this.draw = function(graphicsCanvas, textCanvas) {
-            // to be implemented later
+        this.width = undefined;
+        this.height = undefined;
+
+        /*
+            See draw() of supertype GUI.Component for general
+            description; note that the textualCanvas argument
+            isn't used here
+            @pre this.image.complete must be true
+            @post the icon, which is solely an image, has been
+            drawn on the given graphical canvas; note that the icon's
+            position is its top-left coordinate
+        */
+        this.draw = function(graphicalCanvas, textualCanvas) {
+            var context = graphicalCanvas.getContext('2d');
+            if (this.width !== undefined &&
+                this.height !== undefined) {
+                // If the icon's width and height were both specified,
+                // use those dimensions
+                context.drawImage(this.image, this._positionX,
+                    this._positionY, this.width, this.height);
+            }
+            else {
+                // Icon's width and height weren't both specified, so
+                // use image's dimensions
+                context.drawImage(this.image, this._positionX,
+                    this._positionY);
+            }
+
+            /*
+            var that = this;
+            alert("Loaded: " + (this.image.naturalWidth.complete));
+            this.image.onload = function() {
+                alert("Loaded: " + (this.complete));
+
+                if (that.width !== undefined &&
+                    that.height !== undefined) {
+                    // If the icon's width and height were both specified,
+                    // use those dimensions
+                    context.drawImage(this, that._positionX, that._positionY,
+                        that.width, that.height);
+                }
+                else {
+                    // Icon's width and height weren't both specified, so
+                    // use image's dimensions
+                    context.drawImage(this, that._positionX, that._positionY);
+                }
+            };
+            */
         }
     }
 };

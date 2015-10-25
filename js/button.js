@@ -27,16 +27,57 @@ GUI.Button = function(fontFace) {
             get : function() {
                 return _text;
             },
-            set : undefined,
+            set : function(text) {
+                _text = text;
+            },
             enumerable : true,
             configurable : true
         });
 
         this._textColor = GUI.Button.TEXT_COLORS.UNSELECTED;
 
-        this.draw = function(graphicsCanvas, textCanvas) {
-            // to be implemented later
-        }
+        /*
+            See draw() of supertype GUI.Component for general
+            description
+            @post the button's graphical part has been drawn on
+            the graphical canvas, and its textual part has been
+            drawn on the textual canvas; note that the button's
+            position is its top-left coordinate
+        */
+        this.draw = function(graphicalCanvas, textualCanvas) {
+            this._drawGraphicalPart(graphicalCanvas);
+            this._drawTextualPart(textualCanvas);
+        };
+
+        /*
+            @pre this button's graphical part either hasn't been
+            drawn or has been erased
+            @post the button's graphical part has been drawn
+            on the given canvas
+        */
+        this._drawGraphicalPart = function(graphicalCanvas) {
+            var context = graphicalCanvas.getContext('2d');
+            context.fillStyle = "black";
+            context.fillRect(this._positionX, this._positionY,
+                GUI.Button.DIMENSIONS.x, GUI.Button.DIMENSIONS.y);
+        };
+
+        /*
+            @pre this button's textual part either hasn't been
+            drawn or has been erased
+            @post the button's textual part has been drawn
+            on the given canvas
+        */
+        this._drawTextualPart = function(textualCanvas) {
+            var context = textualCanvas.getContext('2d');
+            context.fillStyle = this._textColor;
+            context.font = GUI.Button.FONT_SIZE + "px " + this.fontFace;
+            context.textAlign = "center";
+            context.textBaseline = "middle";
+            context.fillText(this.text,
+                this._positionX + (GUI.Button.DIMENSIONS.x / 2),
+                this._positionY + (GUI.Button.DIMENSIONS.y / 2));
+        };
     }
 };
 
@@ -97,3 +138,10 @@ GUI.Button.TEXT_COLORS = {
     UNSELECTED : "white",
     SELECTED : "red",
 }
+
+GUI.Button.DIMENSIONS = {
+    x : 130,
+    y : 70,
+}
+
+GUI.Button.FONT_SIZE = 16;

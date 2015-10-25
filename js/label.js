@@ -33,8 +33,21 @@ GUI.Label = function(text, fontFace) {
         this.fontFace = fontFace;
         this.fontSize = 15;
 
-        this.draw = function(graphicsCanvas, textCanvas) {
-            // to be implemented later
+        /*
+            See draw() of supertype GUI.Component for general
+            description; note that the graphicalCanvas argument
+            isn't used here
+            @post the label, which is solely text, has been
+            drawn on the given textual canvas; note that the label's
+            position is its top-left coordinate
+        */
+        this.draw = function(graphicalCanvas, textualCanvas) {
+            var context = textualCanvas.getContext('2d');
+            context.fillStyle = GUI.Label.TEXT_COLOR;
+            context.font = this.fontSize + "px " + this.fontFace;
+            context.textAlign = "left";
+            context.textBaseline = "top";
+            context.fillText(this.text, this._positionX, this._positionY);
         }
     }
 };
@@ -52,3 +65,5 @@ GUI.Label.prototype = Object.create(GUI.Component.prototype, {
 GUI.Label.prototype.isSelectable = function() {
     return false;
 }
+
+GUI.Label.TEXT_COLOR = "black";
