@@ -35,69 +35,6 @@ GUI.Button = function(fontFace) {
         });
 
         this._textColor = GUI.Button.TEXT_COLORS.UNSELECTED;
-
-        /*
-            See draw() of supertype GUI.Component for general
-            description
-            @post the button's graphical part has been drawn on
-            the graphical canvas, and its textual part has been
-            drawn on the textual canvas; note that the button's
-            position is its top-left coordinate
-        */
-        this.draw = function(graphicalCanvas, textualCanvas) {
-            this._drawGraphicalPart(graphicalCanvas);
-            this._drawTextualPart(textualCanvas);
-        };
-
-        /*
-            @pre this button's graphical part either hasn't been
-            drawn or has been erased
-            @post the button's graphical part has been drawn
-            on the given canvas
-        */
-        this._drawGraphicalPart = function(graphicalCanvas) {
-            var context = graphicalCanvas.getContext('2d');
-            context.fillStyle = "black";
-            context.fillRect(this._positionX, this._positionY,
-                GUI.Button.DIMENSIONS.x, GUI.Button.DIMENSIONS.y);
-        };
-
-        /*
-            @pre this button's textual part either hasn't been
-            drawn or has been erased
-            @post the button's textual part has been drawn
-            on the given canvas
-        */
-        this._drawTextualPart = function(textualCanvas) {
-            var context = textualCanvas.getContext('2d');
-            context.fillStyle = this._textColor;
-            context.font = GUI.Button.FONT_SIZE + "px " + this.fontFace;
-            context.textAlign = "center";
-            context.textBaseline = "middle";
-            context.fillText(this.text,
-                this._positionX + (GUI.Button.DIMENSIONS.x / 2),
-                this._positionY + (GUI.Button.DIMENSIONS.y / 2));
-        };
-
-        /*
-            @pre the button's textual part is on the given canvas
-            and fits in the area of the graphical button
-            @post the button's textual part has been erased
-        */
-        this._eraseTextualPart = function(textualCanvas) {
-            var context = textualCanvas.getContext('2d');
-            context.clearRect(this._positionX, this._positionY,
-                GUI.Button.DIMENSIONS.x, GUI.Button.DIMENSIONS.y);
-        };
-
-        /*
-            @post this button's textual part has been erased
-            and redrawn on the given canvas
-        */
-        this.redrawTextualPart = function(textualCanvas) {
-            this._eraseTextualPart(textualCanvas);
-            this._drawTextualPart(textualCanvas);
-        }
     }
 };
 
@@ -121,6 +58,69 @@ GUI.Button.prototype.setCallback = function(callback) {
 GUI.Button.prototype.isSelectable = function() {
     return true;
 };
+
+/*
+    See draw() of supertype GUI.Component for general
+    description
+    @post the button's graphical part has been drawn on
+    the graphical canvas, and its textual part has been
+    drawn on the textual canvas; note that the button's
+    position is its top-left coordinate
+*/
+GUI.Button.prototype.draw = function(graphicalCanvas, textualCanvas) {
+    this._drawGraphicalPart(graphicalCanvas);
+    this._drawTextualPart(textualCanvas);
+};
+
+/*
+    @pre this button's graphical part either hasn't been
+    drawn or has been erased
+    @post the button's graphical part has been drawn
+    on the given canvas
+*/
+GUI.Button.prototype._drawGraphicalPart = function(graphicalCanvas) {
+    var context = graphicalCanvas.getContext('2d');
+    context.fillStyle = "black";
+    context.fillRect(this._positionX, this._positionY,
+        GUI.Button.DIMENSIONS.x, GUI.Button.DIMENSIONS.y);
+};
+
+/*
+    @pre this button's textual part either hasn't been
+    drawn or has been erased
+    @post the button's textual part has been drawn
+    on the given canvas
+*/
+GUI.Button.prototype._drawTextualPart = function(textualCanvas) {
+    var context = textualCanvas.getContext('2d');
+    context.fillStyle = this._textColor;
+    context.font = GUI.Button.FONT_SIZE + "px " + this.fontFace;
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    context.fillText(this.text,
+        this._positionX + (GUI.Button.DIMENSIONS.x / 2),
+        this._positionY + (GUI.Button.DIMENSIONS.y / 2));
+};
+
+/*
+    @pre the button's textual part is on the given canvas
+    and fits in the area of the graphical button
+    @post the button's textual part has been erased
+*/
+GUI.Button.prototype._eraseTextualPart = function(textualCanvas) {
+    var context = textualCanvas.getContext('2d');
+    context.clearRect(this._positionX, this._positionY,
+        GUI.Button.DIMENSIONS.x, GUI.Button.DIMENSIONS.y);
+};
+
+/*
+    @post this button's textual part has been erased
+    and redrawn on the given canvas
+*/
+GUI.Button.prototype.redrawTextualPart = function(textualCanvas) {
+    this._eraseTextualPart(textualCanvas);
+    this._drawTextualPart(textualCanvas);
+}
 
 /*
     @post the button has been updated to reflect its having been
