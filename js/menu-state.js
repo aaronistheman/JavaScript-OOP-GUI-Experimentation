@@ -60,8 +60,12 @@ function MenuState(graphicalCanvasId, textualCanvasId) {
         alert("Button 2 was pressed");
     });
 
+    var label1 = new GUI.Label("Label 1", "Arial");
+    label1.setPosition(400, 200);
+
     this._GUIContainer.pack(button1);
     this._GUIContainer.pack(button2);
+    this._GUIContainer.pack(label1);
 }
 
 MenuState.prototype = {

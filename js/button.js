@@ -41,7 +41,8 @@ GUI.Button = function(fontFace) {
             description
             @post the button's graphical part has been drawn on
             the graphical canvas, and its textual part has been
-            drawn on the textual canvas
+            drawn on the textual canvas; note that the button's
+            position is its top-left coordinate
         */
         this.draw = function(graphicalCanvas, textualCanvas) {
             this._drawGraphicalPart(graphicalCanvas);
