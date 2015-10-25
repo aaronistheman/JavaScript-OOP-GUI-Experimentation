@@ -33,25 +33,47 @@ GUI.Icon = function(image) {
             See draw() of supertype GUI.Component for general
             description; note that the textualCanvas argument
             isn't used here
+            @pre this.image.complete must be true
             @post the icon, which is solely an image, has been
             drawn on the given graphical canvas; note that the icon's
             position is its top-left coordinate
         */
         this.draw = function(graphicalCanvas, textualCanvas) {
             var context = graphicalCanvas.getContext('2d');
-            var that = this;
-            alert("Loaded: " + (this.naturalWidth > 0));
-            this.image.onload = function() {
-                alert("Loaded: " + (this.naturalWidth > 0));
+            if (this.width !== undefined &&
+                this.height !== undefined) {
+                // If the icon's width and height were both specified,
+                // use those dimensions
+                context.drawImage(this.image, this._positionX,
+                    this._positionY, this.width, this.height);
+            }
+            else {
+                // Icon's width and height weren't both specified, so
+                // use image's dimensions
+                context.drawImage(this.image, this._positionX,
+                    this._positionY);
+            }
 
-                if (that.width !== undefined && that.height !== undefined)
+            /*
+            var that = this;
+            alert("Loaded: " + (this.image.naturalWidth.complete));
+            this.image.onload = function() {
+                alert("Loaded: " + (this.complete));
+
+                if (that.width !== undefined &&
+                    that.height !== undefined) {
                     // If the icon's width and height were both specified,
                     // use those dimensions
                     context.drawImage(this, that._positionX, that._positionY,
                         that.width, that.height);
-                else
+                }
+                else {
+                    // Icon's width and height weren't both specified, so
+                    // use image's dimensions
                     context.drawImage(this, that._positionX, that._positionY);
+                }
             };
+            */
         }
     }
 };
