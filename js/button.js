@@ -78,6 +78,26 @@ GUI.Button = function(fontFace) {
                 this._positionX + (GUI.Button.DIMENSIONS.x / 2),
                 this._positionY + (GUI.Button.DIMENSIONS.y / 2));
         };
+
+        /*
+            @pre the button's textual part is on the given canvas
+            and fits in the area of the graphical button
+            @post the button's textual part has been erased
+        */
+        this._eraseTextualPart = function(textualCanvas) {
+            var context = textualCanvas.getContext('2d');
+            context.clearRect(this._positionX, this._positionY,
+                GUI.Button.DIMENSIONS.x, GUI.Button.DIMENSIONS.y);
+        };
+
+        /*
+            @post this button's textual part has been erased
+            and redrawn on the given canvas
+        */
+        this.redrawTextualPart = function(textualCanvas) {
+            this._eraseTextualPart(textualCanvas);
+            this._drawTextualPart(textualCanvas);
+        }
     }
 };
 
@@ -106,20 +126,37 @@ GUI.Button.prototype.isSelectable = function() {
     @post the button has been updated to reflect its having been
     selected; its text color has been changed
     @hasTest yes
+    @param graphicalCanvas canvas on which to redraw the graphical
+    part of the button (if desired); give value of undefined to
+    not redraw
+    @param textualCanvas canvas on which to redraw the textual
+    parts of the button (if desired); give value of undefined to
+    not redraw
 */
-GUI.Button.prototype.select = function() {
+GUI.Button.prototype.select = function(graphicalCanvas, textualCanvas) {
     GUI.Component.prototype.select.call(this);
+
+    // Update the button's appearance
     this._textColor = GUI.Button.TEXT_COLORS.SELECTED;
+    if (textualCanvas !== undefined)
+        this.redrawTextualPart(textualCanvas);
 };
 
 /*
     @post the button has been updated to reflect its having been
     deselected; its text color has been changed
     @hasTest yes
+    @param graphicalCanvas canvas on which to redraw the graphical
+    part of the button (if desired)
+    @param textualCanvas canvas on which to redraw the textual
+    parts of the button (if desired)
 */
-GUI.Button.prototype.deselect = function() {
+GUI.Button.prototype.deselect = function(graphicalCanvas, textualCanvas) {
     GUI.Component.prototype.deselect.call(this);
+
+    // Update the button's appearance
     this._textColor = GUI.Button.TEXT_COLORS.UNSELECTED;
+    this.redrawTextualPart(textualCanvas);
 };
 
 /*

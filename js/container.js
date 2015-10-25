@@ -18,7 +18,7 @@ GUI.Container = function() {
         GUI.Component.call(this);
 
         this._children = [];
-        this._selectedChild = -1;
+        this._selectedChild = -1; // index of the selected child
     }
 };
 
@@ -44,7 +44,7 @@ GUI.Container.prototype.pack = function(component) {
     this._children.push(component);
 
     if (!this.hasSelection() && component.isSelectable())
-        this.select(this._children.length - 1);
+        this.select(this._children.length - 1, undefined, undefined);
 };
 
 GUI.Container.prototype.isSelectable = function() {
@@ -73,13 +73,19 @@ GUI.Container.prototype.hasSelection = function() {
     selectable
     @hasTest yes
     @param index of the component in this._children to select
+    @param graphicalCanvas canvas on which to redraw the graphical
+    part of the selected component
+    @param textualCanvas canvas on which to redraw the textual
+    part of the selected component
 */
-GUI.Container.prototype.select = function(index) {
+GUI.Container.prototype.select =
+    function(index, graphicalCanvas, textualCanvas) {
     if (this._children[index].isSelectable()) {
         if (this.hasSelection())
-            this._children[this._selectedChild].deselect();
+            this._children[this._selectedChild].deselect(
+                graphicalCanvas, textualCanvas);
 
-        this._children[index].select();
+        this._children[index].select(graphicalCanvas, textualCanvas);
         this._selectedChild = index;
     }
 };
@@ -88,36 +94,78 @@ GUI.Container.prototype.select = function(index) {
     @post the next selectable component has been selected,
     or nothing happened if this container doesn't have a selected
     component
+    @param graphicalCanvas canvas on which to redraw the graphical
+    part of the selected component
+    @param textualCanvas canvas on which to redraw the textual
+    part of the selected component
 */
-GUI.Container.prototype.selectNext = function() {
+GUI.Container.prototype.selectNext =
+    function(graphicalCanvas, textualCanvas) {
     if (!this.hasSelection())
         return;
 
     // Search for next selectable component; wrap around if necessary
     var next = this._selectedChild;
     do
-        next = (next + 1) % this._children.size();
+        next = (next + 1) % this._children.length;
     while (!this._children[next].isSelectable());
 
     // Select that component
-    this.select(next);
+    this.select(next, graphicalCanvas, textualCanvas);
 };
 
 /*
     @post the most previous selectable component has been selected,
     or nothing happened if this container doesn't have a selected
     component
+    @param graphicalCanvas canvas on which to redraw the graphical
+    part of the selected component
+    @param textualCanvas canvas on which to redraw the textual
+    part of the selected component
 */
-GUI.Container.prototype.selectPrevious = function() {
+GUI.Container.prototype.selectPrevious =
+    function(graphicalCanvas, textualCanvas) {
     if (!this.hasSelection())
         return;
 
     // Search for previous selectable component; wrap around if necessary
     var prev = this._selectedChild;
     do
-        prev = (prev + this._children.size() - 1) % this._children.size();
+        prev = (prev + this._children.length - 1) % this._children.length;
     while (!this._children[prev].isSelectable());
 
     // Select that component
-    this.select(prev);
+    this.select(prev, graphicalCanvas, textualCanvas);
+};
+
+/*
+    @pre if isEnabled is true, graphicalCanvas and textualCanvas
+    must be defined
+    @post if isEnabled is true, this container will be able to respond to
+    the user's input; if false, that ability to respond will have
+    been disabled
+    @param isEnabled
+    @param graphicalCanvas canvas on which to redraw the graphical
+    parts of any selected components (if necessary)
+    @param textualCanvas canvas on which to redraw the textual
+    parts of any selected components (if necessary)
+*/
+GUI.Container.prototype.setResponseToInput =
+    function(isEnabled, graphicalCanvas, textualCanvas) {
+    var that = this;
+    if (isEnabled) {
+        $(document).keydown(function(event) {
+            if (event.which === 38) {
+                // up key was pressed
+                that.selectPrevious(graphicalCanvas, textualCanvas);
+            }
+            else if (event.which === 40) {
+                // down key was pressed
+                that.selectNext(graphicalCanvas, textualCanvas);
+            }
+        });
+    }
+    else {
+        $(document).keydown(function(event) {});
+    }
 };

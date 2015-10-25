@@ -1,5 +1,5 @@
--implement MenuState.enableInput() to allow arrow keys
-    --redraw button's text when it's selected or deselected
-    --make sure only selectable components can be selected
+-clean up MenuState
+    --make MenuState's constructor cleaner with helper function
+    --move some of Button's functions out of its constructor
 -improve the look of the drawn GUI components
 -make a thorough readme?
