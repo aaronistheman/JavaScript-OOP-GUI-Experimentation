@@ -1,7 +1,4 @@
 -create class MenuState
-    --create some sample combinations of the GUI classes; draw
-        them on canvas
-        --allow optional setting of the dimensions of an icon
     --give MenuState a loadCanvases method
 -implement MenuState.enableInput() to allow arrow keys
     --redraw button's text when it's selected or deselected

@@ -26,6 +26,9 @@ GUI.Icon = function(image) {
             configurable : true
         });
 
+        this.width = undefined;
+        this.height = undefined;
+
         /*
             See draw() of supertype GUI.Component for general
             description; note that the textualCanvas argument
@@ -37,10 +40,17 @@ GUI.Icon = function(image) {
         this.draw = function(graphicalCanvas, textualCanvas) {
             var context = graphicalCanvas.getContext('2d');
             var that = this;
-            alert(this.naturalWidth);
+            alert("Loaded: " + (this.naturalWidth > 0));
             this.image.onload = function() {
-                alert(this.naturalWidth);
-                context.drawImage(this, that._positionX, that._positionY);
+                alert("Loaded: " + (this.naturalWidth > 0));
+
+                if (that.width !== undefined && that.height !== undefined)
+                    // If the icon's width and height were both specified,
+                    // use those dimensions
+                    context.drawImage(this, that._positionX, that._positionY,
+                        that.width, that.height);
+                else
+                    context.drawImage(this, that._positionX, that._positionY);
             };
         }
     }

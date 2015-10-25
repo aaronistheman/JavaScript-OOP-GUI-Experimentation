@@ -67,6 +67,7 @@ function MenuState(graphicalCanvasId, textualCanvasId) {
     image1.src = "banker.png";
     var icon1 = new GUI.Icon(image1);
     icon1.setPosition(0, 0);
+    icon1.width = icon1.height = 40;
 
     this._GUIContainer.pack(button1);
     this._GUIContainer.pack(button2);
