@@ -147,16 +147,19 @@ GUI.Button.prototype.select = function(graphicalCanvas, textualCanvas) {
     deselected; its text color has been changed
     @hasTest yes
     @param graphicalCanvas canvas on which to redraw the graphical
-    part of the button (if desired)
+    part of the button (if desired); give value of undefined to
+    not redraw
     @param textualCanvas canvas on which to redraw the textual
-    parts of the button (if desired)
+    parts of the button (if desired); give value of undefined to
+    not redraw
 */
 GUI.Button.prototype.deselect = function(graphicalCanvas, textualCanvas) {
     GUI.Component.prototype.deselect.call(this);
 
     // Update the button's appearance
     this._textColor = GUI.Button.TEXT_COLORS.UNSELECTED;
-    this.redrawTextualPart(textualCanvas);
+    if (textualCanvas !== undefined)
+        this.redrawTextualPart(textualCanvas);
 };
 
 /*

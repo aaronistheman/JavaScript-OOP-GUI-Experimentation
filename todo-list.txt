@@ -1,5 +1,4 @@
 -clean up
-    --fix unit tests
     --move some of Button's functions out of its constructor
 -respond to buttons' activation
 -improve the look of the drawn GUI components
