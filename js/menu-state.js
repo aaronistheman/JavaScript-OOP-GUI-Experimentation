@@ -17,27 +17,44 @@
 */
 function MenuState(graphicalCanvasId, textualCanvasId) {
     /*
+        Call this function after the canvases indicated by the given
+        ids have been created
+        @post the canvases indicated by the constructor's parameters
+        have been stored
+    */
+    this.loadCanvases = function() {
+        _graphicalCanvas = document.getElementById(graphicalCanvasId);
+        _textualCanvas = document.getElementById(textualCanvasId);
+    };
+
+    /*
         Initialize members
     */
 
     this._GUIContainer = new GUI.Container();
 
-    var _graphicalCanvas = document.getElementById(graphicalCanvasId);
+    // Declare truly private member _graphicalCanvas
+    var _graphicalCanvas = undefined;
     Object.defineProperty(this, "graphicalCanvas", {
         get : function() {
             return _graphicalCanvas;
         },
-        set : undefined,
+        set : function(canvas) {
+            _graphicalCanvas = canvas;
+        },
         enumerable : true,
         configurable : true
     });
 
-    var _textualCanvas = document.getElementById(textualCanvasId);
+    // Declare truly private member _textualCanvas
+    var _textualCanvas = undefined;
     Object.defineProperty(this, "textualCanvas", {
         get : function() {
             return _textualCanvas;
         },
-        set : undefined,
+        set : function(canvas) {
+            _textualCanvas = canvas;
+        },
         enumerable : true,
         configurable : true
     });
@@ -79,11 +96,13 @@ MenuState.prototype = {
     constructor : MenuState,
 
     /*
+        @pre this.graphicalCanvas !== undefined;
+        this.textualCanvas !== undefined
         @post each component in this._GUIContainer has been
         drawn on this MenuState instance's canvases
     */
     draw : function() {
         this._GUIContainer.draw(
             this.graphicalCanvas, this.textualCanvas);
-    }
+    },
 }

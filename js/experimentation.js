@@ -5,7 +5,9 @@
     Not for release
 */
 
+var menuState = new MenuState("graphical-canvas", "textual-canvas");
+
 $(document).ready(function() {
-    var menuState = new MenuState("graphical-canvas", "textual-canvas");
+    menuState.loadCanvases();
     menuState.draw();
 });

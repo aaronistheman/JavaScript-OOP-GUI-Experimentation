@@ -1,5 +1,6 @@
 -create class MenuState
-    --give MenuState a loadCanvases method
+    --allow MenuState to function also under the assumption that the
+        images loaded instantly (so onload wouldn't be triggered)
 -implement MenuState.enableInput() to allow arrow keys
     --redraw button's text when it's selected or deselected
     --make sure only selectable components can be selected
