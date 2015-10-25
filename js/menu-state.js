@@ -105,4 +105,15 @@ MenuState.prototype = {
         this._GUIContainer.draw(
             this.graphicalCanvas, this.textualCanvas);
     },
+
+    /*
+        @post if isEnabled is true, this instance of MenuState
+        will respond to input; if false, that ability to respond
+        will be disabled
+        @param isEnabled
+    */
+    setResponseToInput : function(isEnabled) {
+        this._GUIContainer.setResponseToInput(isEnabled,
+            this.graphicalCanvas, this.textualCanvas);
+    },
 }
