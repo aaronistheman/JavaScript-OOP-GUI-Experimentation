@@ -63,9 +63,15 @@ function MenuState(graphicalCanvasId, textualCanvasId) {
     var label1 = new GUI.Label("Label 1", "Arial");
     label1.setPosition(400, 200);
 
+    var image1 = new Image();
+    image1.src = "banker.png";
+    var icon1 = new GUI.Icon(image1);
+    icon1.setPosition(0, 0);
+
     this._GUIContainer.pack(button1);
     this._GUIContainer.pack(button2);
     this._GUIContainer.pack(label1);
+    this._GUIContainer.pack(icon1);
 }
 
 MenuState.prototype = {

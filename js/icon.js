@@ -26,8 +26,22 @@ GUI.Icon = function(image) {
             configurable : true
         });
 
-        this.draw = function(graphicsCanvas, textCanvas) {
-            // to be implemented later
+        /*
+            See draw() of supertype GUI.Component for general
+            description; note that the textualCanvas argument
+            isn't used here
+            @post the icon, which is solely an image, has been
+            drawn on the given graphical canvas; note that the icon's
+            position is its top-left coordinate
+        */
+        this.draw = function(graphicalCanvas, textualCanvas) {
+            var context = graphicalCanvas.getContext('2d');
+            var that = this;
+            alert(this.naturalWidth);
+            this.image.onload = function() {
+                alert(this.naturalWidth);
+                context.drawImage(this, that._positionX, that._positionY);
+            };
         }
     }
 };
