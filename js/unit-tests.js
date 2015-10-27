@@ -57,7 +57,7 @@ QUnit.test("Button()", function(assert) {
 
 QUnit.test("Button.prototype.select()", function(assert) {
     var button = new GUI.Button("trivial");
-    button.select();
+    button.select(undefined, undefined);
     assert.ok(button._isSelected,
         "Button's state has been updated to reflect its being selected");
     assert.deepEqual(button._textColor, GUI.Button.TEXT_COLORS.SELECTED,
@@ -67,8 +67,8 @@ QUnit.test("Button.prototype.select()", function(assert) {
 // This test assumes that GUI.Button.prototype.select() works
 QUnit.test("Button.prototype.deselect()", function(assert) {
     var button = new GUI.Button("trivial");
-    button.select();
-    button.deselect();
+    button.select(undefined, undefined);
+    button.deselect(undefined, undefined);
     assert.deepEqual(button._isSelected, false,
         "Button's state has been updated to reflect its being deselected");
     assert.deepEqual(button._textColor, GUI.Button.TEXT_COLORS.UNSELECTED,
@@ -150,12 +150,12 @@ QUnit.test("Container.prototype.select()", function(assert) {
     container.pack(new GUI.Button());
     container.pack(new GUI.Button());
 
-    container.select(0);
+    container.select(0, undefined, undefined);
     assert.ok((container._selectedChild === 1) &&
         (!container._children[0].isSelected()) &&
         container._children[1].isSelected(),
         "Nothing happens if indicated component isn't selectable");
-    container.select(2);
+    container.select(2, undefined, undefined);
     assert.ok((container._selectedChild === 2) &&
         (!container._children[1].isSelected()) &&
         container._children[2].isSelected(),

@@ -1,5 +1,2 @@
--clean up MenuState
-    --make MenuState's constructor cleaner with helper function
-    --move some of Button's functions out of its constructor
--improve the look of the drawn GUI components
+-respond to buttons' activation
 -make a thorough readme?
