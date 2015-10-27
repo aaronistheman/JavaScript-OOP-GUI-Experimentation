@@ -140,7 +140,7 @@ GUI.Container.prototype.selectPrevious =
 
 /*
     @pre if isEnabled is true, graphicalCanvas and textualCanvas
-    must be defined
+    must be defined; each stored, selectable component can be activated
     @post if isEnabled is true, this container will be able to respond to
     the user's input; if false, that ability to respond will have
     been disabled
@@ -162,6 +162,11 @@ GUI.Container.prototype.setResponseToInput =
             else if (event.which === 40) {
                 // down key was pressed
                 that.selectNext(graphicalCanvas, textualCanvas);
+            }
+            else if (event.which === 13 || event.which === 32) {
+                // Enter key or spacebar was pressed
+                if (that.hasSelection())
+                    that._children[that._selectedChild].activate();
             }
         });
     }

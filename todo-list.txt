@@ -1,2 +1,4 @@
--respond to buttons' activation
--make a thorough readme?
+-documentation
+    --in files' header comments, mention translation from SFML C++
+        to Canvas-based JavaScript
+    --make a thorough readme
