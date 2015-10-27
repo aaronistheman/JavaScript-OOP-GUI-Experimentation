@@ -18,7 +18,7 @@
 function MenuState(graphicalCanvasId, textualCanvasId) {
     this._GUIContainer = new GUI.Container();
 
-    // Declare truly private member _graphicalCanvas
+    // Declare truly private member "_graphicalCanvas"
     var _graphicalCanvas = undefined;
     Object.defineProperty(this, "graphicalCanvas", {
         get : function() {
@@ -31,7 +31,7 @@ function MenuState(graphicalCanvasId, textualCanvasId) {
         configurable : true
     });
 
-    // Declare truly private member _textualCanvas
+    // Declare truly private member "_textualCanvas"
     var _textualCanvas = undefined;
     Object.defineProperty(this, "textualCanvas", {
         get : function() {

@@ -1,8 +1,2 @@
--clean up
-    --make some of the other own methods into prototype methods
-    --change some officially private members into unofficially such?
-        --do this with the ones that have both getters and setters,
-            since there's no point in making it complicated
 -respond to buttons' activation
--improve the look of the drawn GUI components
 -make a thorough readme?

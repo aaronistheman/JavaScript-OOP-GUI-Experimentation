@@ -22,6 +22,7 @@ GUI.Button = function(fontFace) {
 
         this._callback = undefined;
 
+        // Define truly private property "_text"
         var _text = undefined;
         Object.defineProperty(this, "text", {
             get : function() {
