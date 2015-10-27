@@ -1,8 +1,8 @@
 "use strict";
 
 /*
-    Author: Aaron Kaloti
-    Not for release
+    Original Author: Aaron Kaloti
+    For experimentation
     
     This file includes code that isn't easily assigned to one
     of the other JavaScript files.

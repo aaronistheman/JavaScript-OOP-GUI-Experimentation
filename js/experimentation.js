@@ -2,7 +2,7 @@
 
 /*
     Author: Aaron Kaloti
-    Not for release
+    For experimentation
 */
 
 var menuState = new MenuState("graphical-canvas", "textual-canvas");

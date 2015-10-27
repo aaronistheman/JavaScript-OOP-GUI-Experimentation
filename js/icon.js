@@ -2,7 +2,7 @@
 
 /*
     Original Author: Aaron Kaloti
-    Not for release
+    For experimentation
 */
 
 /*

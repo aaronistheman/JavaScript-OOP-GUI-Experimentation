@@ -1,10 +1,11 @@
 "use strict";
 
 /*
-    Translated (from C++ to JavaScript) by: Aaron Kaloti
-    Authors of original (C++) version: Artur Moreira,
-        Henrik Vogelius Hansson, and Jan Haller
-    Not for release
+    Authors of original (C++, SFML-supporting) version:
+        Artur Moreira, Henrik Vogelius Hansson, and Jan Haller
+    Translated (from C++, SFML-supporting version to
+        JavaScript, Canvas-supporting version) by: Aaron Kaloti
+    For experimentation
 */
 
 /*

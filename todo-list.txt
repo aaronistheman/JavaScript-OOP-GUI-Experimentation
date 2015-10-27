@@ -1,4 +1,1 @@
--documentation
-    --in files' header comments, mention translation from SFML C++
-        to Canvas-based JavaScript
-    --make a thorough readme
+Nothing currently.

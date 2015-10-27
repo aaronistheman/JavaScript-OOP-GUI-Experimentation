@@ -1,8 +1,8 @@
 "use strict";
 
 /*
-    Author: Aaron Kaloti
-    Not for release
+    Original Author: Aaron Kaloti
+    For experimentation
 */
 
 /*
